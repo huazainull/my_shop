@@ -141,8 +141,8 @@ MEDIA_URL='/media/'
 #
 MEDIA_ROOT=os.path.join(BASE_DIR,'static')
 
-EMAIL_HOST_USER='1363998021@qq.com'#发送人
-EMAIL_HOST_PASSWORD='yywjgzdagnvhiebf'#登录服务器密码
+EMAIL_HOST_USER='13639328021@qq.com'#发送人
+EMAIL_HOST_PASSWORD='rerwwerewrewrwr'#登录服务器密码
 EMAIL_HOST_SSL=True#发送人，采用加密
 EMAIL_HOST='smtp.qq.com'#发送服务器地址
 EMAIL_PORT=465#发送服务器端口
