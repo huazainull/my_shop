@@ -1,0 +1,97 @@
+	{% extends 'buyer/base.html' %}
+    {% load static %}
+    {% block content %}
+        {% block carshops %}
+        {{ num }}
+        {% endblock %}
+<div class="goods_detail_con clearfix">
+		<div class="goods_detail_pic fl"><img style="width: 380px;height: 380px" src="/static/{{ com.commodity_picture }}"></div>
+
+		<div class="goods_detail_list fr">
+			<h3>{{ com.commodity_name }}</h3>
+			<p>{{ com.commodity_content }}</p>
+			<div class="prize_bar">
+				<span class="show_pirze">¥<em id="danjia">{{ com.commodity_price }}</em></span>
+				<span class="show_unit">单  位：500g</span>
+			</div>
+            <form action="" method="post">
+                {% csrf_token %}
+			<div class="goods_num clearfix">
+				<div class="num_name fl">数 量：</div>
+				<div class="num_add fl">
+
+					<input type="text" class="num_show fl" id="number" name="number" value="1" />
+{#                    <input  id=com_id type="hidden" value="{{ com.id }}"/>#}
+					<a href="javascript:jisuan('add')"    class="add fr">+</a>
+					<a href="javascript:jisuan('mm')"  class="minus fr">-</a>
+{#                      <a href="#" class="minus fr">-</a>#}
+{#                    <a href="javascript:;" class="minus fr">-</a>#}
+{#                    <a href="javascript:void(0);" class="minus fr">-</a>#}
+				</div>
+			</div>
+			<div class="total">总价：<em id="total">{{ com.commodity_price }}元</em></div>
+			<div class="operate_btn">
+				<button type="submit" class="buy_btn">加入购物车</button>
+				<a href="javascript:;" class="add_cart" id="add_cart">立即购买</a>
+			</div>
+            </form>
+		</div>
+	</div>
+
+	<div class="main_wrap clearfix">
+		<div class="l_wrap fl clearfix">
+			<div class="new_goods">
+				<h3>新品推荐</h3>
+				<ul>
+					<li>
+						<a href="#"><img src="images/goods/goods001.jpg"></a>
+						<h4><a href="#">进口柠檬</a></h4>
+						<div class="prize">￥3.90</div>
+					</li>
+					<li>
+						<a href="#"><img src="images/goods/goods002.jpg"></a>
+						<h4><a href="#">玫瑰香葡萄</a></h4>
+						<div class="prize">￥16.80</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="r_wrap fr clearfix">
+			<ul class="detail_tab clearfix">
+				<li class="active">商品介绍</li>
+				<li>评论</li>
+			</ul>
+
+			<div class="tab_content">
+				<dl>
+					<dt>商品详情：</dt>
+					<dd>草莓采摘园位于北京大兴区 庞各庄镇四各庄村 ，每年1月-6月面向北京以及周围城市提供新鲜草莓采摘和精品礼盒装草莓，草莓品种多样丰富，个大香甜。所有草莓均严格按照有机标准培育，不使用任何化肥和农药。草莓在采摘期间免洗可以直接食用。欢迎喜欢草莓的市民前来采摘，也欢迎各大单位选购精品有机草莓礼盒，有机草莓礼盒是亲朋馈赠、福利送礼的最佳选择。 </dd>
+				</dl>
+			</div>
+
+		</div>
+	</div>
+    {% endblock %}
+{% block script %}
+    <script>
+        var num_show=document.getElementById('number').value;
+        var danjia="{{ com.commodity_price }}";//document.getElementById('danjia').value;
+        function jisuan(fuhao) {
+            total_price=0;
+            if(fuhao == 'add'){
+                num_show++;
+            }else{
+                if(num_show == 1){
+                    num_show=1
+                }else{
+                    num_show--;
+                }
+            }
+            document.getElementById('number').value=num_show;
+            total_price=num_show*danjia;
+            document.getElementById('total').innerHTML=total_price+'元';
+
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/buyer/js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label>邮箱地址</label>
+            <input type="text" id="email" name="email">
+        </p>
+        <p>
+            <label> 验证码</label>
+            <input type="text" id="code" name="code">
+            <input type="button" id="getCode" value="获取验证码" onclick="hello()">
+            <span id="error" style="color: red"></span>
+        </p>
+        <p>
+            <input type="submit" id="submit" value="提交">
+        </p>
+    </form>
+<span>{{ result.data }}</span>
+<script>
+    function hello() {
+        var mail =$("#email").val();
+        url="/Buyer/sendCode/?recver="+mail;
+        $.ajax(
+            {
+                url:url,
+                type:'get',
+                data:'',
+                success:function (data) {
+                    $('#error').text(data['data'])
+                },
+                error:function (error) {
+                    console.log(error)
+                }
+            }
+        )
+    }
+</script>
+
+</body>
+</html>

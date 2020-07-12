@@ -1,0 +1,27 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="form-group">
+    <input class="form-control" type="text" name="name" placeholder="类型名称"/>
+        </div>
+        <div class="form-group">
+    <input  type="file" name="picture" placeholder="商品图片"/>
+        </div>
+    <select name="types" >
+        <option value="0">无父类型</option>
+        {% for t in types %}
+        <option value="{{ t.id }}">{{ t.name }}</option>
+        {% endfor %}
+    </select>
+        </div>
+        <div class="form-group">
+    <input type="submit"  class="btn btn-block btn-dark" value="提交"/>
+        </div>
+
+
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>订单编号</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>商品数量</th>
+                <th>商品总价</th>
+                <th>订单状态</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for order in order_list %}
+                <tr>
+                    <td>{{ order.order_id.order_number }}</td>
+                    <td>{{ order.commodity_name }}</td>
+                    <td>{{ order.commodity_price }}</td>
+                    <td>{{ order.commodity_number }}</td>
+                    <td>{{ order.small_money }}</td>
+                    <td>{{ order.order_id.status }}</td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+{% endblock %}

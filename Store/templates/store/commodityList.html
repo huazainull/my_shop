@@ -1,0 +1,76 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+    <a href="/Store/addCom/" class="btn btn-dark">添加商品</a>
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>
+                    商品名称
+                </th>
+                <th>
+                    商品编号
+                </th>
+                <th>
+                    商品价格
+                </th>
+                <th>
+                    商品数量
+                </th>
+                <th>
+                    生产日期
+                </th>
+                <th>
+                    保质期
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in page_data %}
+              <tr>
+                <th>
+                    {{ i.commodity_name }}
+                </th>
+                <th>
+                    {{ i.commodity_id }}
+                </th>
+                <th>
+                    {{ i.commodity_price }}
+                </th>
+                <th>
+                    {{ i.commodity_number }}
+                </th>
+                <th>
+                    {{ i.commodity_data }}
+                </th>
+                <th>
+                    {{ i.commodity_safe_data }}天
+                </th>
+                <th>
+                    {% ifequal type 'up' %}
+{#                        <a href="/Store/soldCom/down/{{ i.id }}/" class="btn btn-danger">下架</a>#}
+                         <a href="/Store/soldCom/{{ i.id }}/" class="btn btn-danger">下架</a>
+                    {% else %}
+{#                        <a href="/Store/soldCom/up/{{ i.id }}/" class="btn btn-danger">上架</a>#}
+                          <a href="/Store/soldCom/{{ i.id }}/" class="btn btn-danger">上架</a>
+                    {% endifequal %}
+                </th>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+
+    <ul class="pagination">
+        {% for p in page_range %}
+            {% ifequal type 'up' %}
+                <li class="pagination"><a class="page-link" href="/Store/comlist/up/{{ p }}">{{ p }}</a></li>
+            {% else %}
+                <li class="pagination"><a class="page-link" href="/Store/comlist/down/{{ p }}">{{ p }}</a></li>
+            {% endifequal %}
+        {% endfor %}
+    </ul>
+{% endblock %}
