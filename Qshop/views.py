@@ -27,36 +27,9 @@ def Valid_Buyer(fun):
             return HttpResponseRedirect('/Buyer/login/')
     return inner
 
-# from django.core.mail import EmailMultiAlternatives
-#
-from django.http import JsonResponse
-# from Qshop.settings import EMAIL_HOST_USER as sender
-# def sendMessage(request):
-#     result={'state':'error','data':''}
-#     try:
-#         message=EmailMultiAlternatives('老刘的邮件','hello',sender,['448615463@qq.com'
-# ])
-#         message.send()
-#     except Exception as e:
-#         result['data']=str(e)
-#     else:
-#         result['state']='success'
-#         result['data']='success'
-#     return JsonResponse(result)
-
 
 from django.core.mail import send_mail
 from Qshop.settings import EMAIL_HOST_USER as sender
-# def sendMessage(request):
-#     result = {"state":"error","data":""}
-#     try:
-#         message = send_mail("老边的邮件","hello world",sender,["2312483892@qq.com"])
-#     except Exception as e:
-#         result["data"] = str(e)
-#     else:
-#         result["state"] = "success"
-#         result["data"] = "success"
-#     return  JsonResponse(result)
 
 import random
 import smtplib  # 登录smtp服务器发送
@@ -73,7 +46,7 @@ def sendMessage(recver):
     # 邮箱内容
     # 内容类型 plain文本
     # 编码
-    message['Subject'] = '水果先生欢迎你的光临'  # 邮箱标题
+    message['Subject'] = '欢迎你的光临'  # 邮箱标题
     message['To'] = recver  # 邮件的接收人
     message['From'] = EMAIL_HOST_USER  # 邮箱发送人
 
@@ -130,14 +103,9 @@ def Pay(order_id,money):
         MIIEpAIBAAKCAQEAqTcQg3Fuwv41BCjA3Ujhk8zdU5/rHxbKY3VM8myJr/Zt35+fqZVuQ+iuSG25ZPi0iqtalvic5JsgEYhdPB6I+MqnAJDLl7rFtWRngFRa0xfDbiFNgjd+vmZMlXz9NylkD3pwO3/E5/yDtnXv5iGFpcCXmi2T8gmCKzFuLM31MkeVfVU/AajoTft9UiFJNRNyGlvbnDhvuF/cgqYoEZFiI9JFzhRk8zixqZTFo7n/AMlWn5s/nc//TvjKfb4FR49MVs2lSHV7vi5DOSR0tOcCaysKcTgKXLL42coPHcv1jg9aB4qV/AgsxbonGdIMzc4FnQ9dY8F6ER/uj4THUOxzbwIDAQABAoIBAEoqLD6wFM+6AxqTkhRqwRO6krb4PGEf6Ay3eMY39BD/fSCqIZx+NhnlfZ2ZGcy7hMXSXJ4W0Q0RQHjuv45+A6Knj5Kb49/YqJbcLtD8J+KlY659Qi90i0SAKcjLQ2BN7+Eo1M//LBpRfpkWD9NZle4T/14/47wNltO/kn5otrMWHfHSd3aaMQe9es2OzU/aLvZj3muUZ8yLe5bFh2RWwqjQJloyBVgs4ryv7lHNwdv7hz+ucYCOfWiVVbHgLVGN3gR+ZiF8Q9sL+3D4JZBnLrHgImAqXjN7e+oIuFC9OI2KObD9comDskfihXTvfoBro2iVsV62Occ4W6Jhu0dm+6ECgYEA34ijDJDkO9SGJ4GQpStdfWyBJBHg0hoBUrin6DH0Qis46DbdnMoFP+nKTROOMfbnDuqdY9wiHLncxEobGRnTwdAJ6tEdOc3lTuvEKNzi2UHxd9DnOROhn2K/Si4GHv0JuuXokeBecAZmEuNtbuBO9Wws2ndMZ/OcPNxTVRjeuWMCgYEAwcrEuS/DpKZj4T+97QZUG6y5V3g1AWS68N4gD80XqV5ajvHL32uq6nr/vYedT/bVqr+r464ALr0DOji3tqcyuL4yLuYfWUuVyvCw14OgfhGrwZwaN4MXIU2lrn//XXnKDtQjZIywJ/MVpP2PHcSfb0Q7lRnzKL1rbUywM5KMQYUCgYAPlX4QjTVsOmfT70N/UGOnL95c/mYXH7sB4l/KX1kxF8RS5ChVGvx8tTbmYruiHh2Du7WXVayHJioPAT+cY2GQ/IkEdum7svAOrX8yfhvOm7tS6ByGrSiybPb7G/RPSsLX5dlt+h97XebV4Ecr2LWIhK8n1/Nat/AnihDBOQemEwKBgQC1eSdNb5AbEIG5vlIhsupyXAXYBkZEvspcovWNNnaw8R2GfKF44D9WgsYX+vXymugtlH3noNqk6fUqwVAwaFQUMm+WAYNbwG9OcqR3vNg/Flcr3/2g/E5drnO3fD9rjpAL4NYf46tWTcl4DsXFj4npzRCqqHlPLkp6OPVL5jEXbQKBgQCcO+laRLg+XshzpstbeYkmoABZ0Nwfjbcvr3qt/+aIH8ng30eZeLSNBZZRTdOsJg+hu8pTV2iPQHUwP1u2LopQZgwo5Eh4D7Qbovahxb0NXVJgFN2sj+DvT2boX3DfrJueKvrDIIgXYRMZ0vwvbvDjItt67NvePEBGHZ1o2Ayx6w==
     -----END RSA PRIVATE KEY-----'''
 
-    # 如果在Linux下，我们可以采用AliPay方法的app_private_key_path和alipay_public_key_path方法直接读取.emp文件来完成签证
-    # 在windows下，默认生成的txt文件，会有两个问题
-    # 1、格式不标准
-    # 2、编码不正确 windows 默认编码是gbk
-
     # 实例化应用
     alipay = AliPay(
-        appid="2016093000628357",  # 支付宝app的id
+        appid="122121212121212",  # 支付宝app的id
         app_notify_url=None,  # 回调视图
         app_private_key_string=app_private_key_string,  # 私钥字符
         alipay_public_key_string=alipay_public_key_string,  # 公钥字符
@@ -147,7 +115,7 @@ def Pay(order_id,money):
     order_string = alipay.api_alipay_trade_page_pay(
         out_trade_no=order_id,  # 订单号
         total_amount=str(money),  # 将Decimal类型转换为字符串交给支付宝
-        subject="商贸商城",
+        subject="商城",
         return_url=None,
         notify_url=None  # 可选, 不填则使用默认notify url
     )
